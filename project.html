@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head> <body>
+  <!-- Custom CSS -->
+  <style>
+    /* Styles for the feedback light indicators */
+    .light {
+
+  border: 1px solid #000;
+  transition: transform 0.3s ease;
+}
+.light:hover {
+  transform: scale(1.7);
+}
+.light.active {
+  border-style: double;
+  border-width: 2px;
+}
+.card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  margin-left: 50px;
+ 
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
+}
+
+.card .title {
+  font-size: 20px;
+  color: #333;
+  margin-top: 0;
+}
+
+.card hr.divider {
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px 0;
+  transition: background-color 0.3s ease;
+}
+
+.card:hover hr.divider {
+  background-color: #999;
+}
+
+.card .details {
+  margin-bottom: 10px;
+}
+
+.card .details h3 {
+  font-size: 16px;
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+.card:hover .details h3 {
+  color: #000;
+}
+
+.card .details p {
+  font-size: 14px;
+  color: #777;
+  margin: 5px 0;
+}
+
+.card .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card .footer .icon {
+  color: #555;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.card .footer .icon:hover {
+  color: #000;
+}
+
+.card .lights-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.card .lights-container .light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.card .lights-container .light.red {
+  background-color: #ff6565;
+}
+
+.card .lights-container .light.orange {
+  background-color: #ffb265;
+}
+
+.card .lights-container .light.green {
+  background-color: #65ff8d;
+}
+
+/* Animation Keyframes */
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Apply slide-in animation to cards */
+.card {
+  animation: slideIn 0.5s ease-in-out;
+}
+
+
+    /* Styles for the interested button */
+    .interested .heart-icon {
+      color: red;
+      border:#000
+    }
+
+    /* Styles for the feedback card */
+    .feedback-card {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    /* Hides the feedback card by default */
+    .feedback-card.hidden {
+      display: none;
+    }
+
+    /* Styles for the feedback card content */
+    .feedback-card-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 400px;
+      animation: slideIn 0.3s ease-in-out;
+    }
+
+    /* Styles for the feedback card title */
+    .feedback-card-content h2 {
+      margin-top: 0;
+    }
+
+    /* Styles for the feedback card paragraph */
+    .feedback-card-content p {
+      margin-bottom: 20px;
+    }
+
+    /* Styles for the feedback form textarea */
+    .feedback-form textarea {
+      width: 100%;
+      height: 100px;
+      resize: none;
+    }
+ 
+
+  .lights-container .light.active {
+    border-style: double !important;
+    border-width: 2px !important;}
+    .light.active {
+  border-style: double;
+  transform: scale(2);
+  border-style: double;
+  border-width: 6px;
+}
+
+  
+
+
+
+  
+
+
+    /* Styles for the feedback form submit button */
+    .feedback-form button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* Styles for the close button of the feedback card */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* Animation Keyframes */
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- JavaScript functions -->
+  <script>
+    // Function to toggle interested status and change button text/icon
+    function addToInterested(event, element) {
+      event.preventDefault();
+      element.classList.toggle('interested');
+      var heartIcon = element.querySelector('.heart-icon');
+      if (element.classList.contains('interested')) {
+        heartIcon.style.color = 'red';
+        element.innerHTML = '<i class="fas fa-heart heart-icon"></i> Added to Interested';
+      } else {
+        heartIcon.style.color = '';
+        element.innerHTML = '<i class="fas fa-heart heart-icon"></i> Interested';
+      }
+    }
+
+    // Function to open the feedback card
+    function openFeedbackCard() {
+      var feedbackCard = document.querySelector('.feedback-card');
+      feedbackCard.classList.remove('hidden');
+    }
+
+    // Function to close the feedback card
+    function closeFeedbackCard() {
+      var feedbackCard = document.querySelector('.feedback-card');
+      feedbackCard.classList.add('hidden');
+    }
+
+    // Function to submit feedback and show thank you message
+    function submitFeedback(event) {
+      event.preventDefault();
+      var feedbackForm = event.target;
+      var thankYouMessage = document.querySelector('.thank-you-message');
+      feedbackForm.style.display = 'none';
+      thankYouMessage.style.display = 'block';
+    }
+
+    // Function to hide the placeholder text in feedback button
+    function hidePlaceholder() {
+      var feedbackButton = document.querySelector('.feedback-button');
+      feedbackButton.setAttribute('placeholder', '');
+    }
+    <!-- JavaScript functions -->
+
+  // ...
+
+  // JavaScript function to toggle active class on light circles
+  
+  
+
+  
+  </script>
+
+  <body style="display: flex; justify-content: center; align-items: center;"
+  ></body>
+ 
+  <!-- First Card -->
+  <div class="card">
+    <h2 class="title">Samakhusi Bridge Construction</h2>
+    <hr class="divider">
+    <div class="details">
+      <section class="project-status">
+        <h3>Project Status: On Process <i class="fas fa-hourglass-half on-process-icon"></i></h3>
+        <p>Type: Bridge Construction</p>
+      </section>
+    </div>
+    <div class="footer">
+      <a href="#" class="icon"><i class="fas fa-file-alt"></i> Report</a>
+      <a href="#" class="icon" onclick="openFeedbackCard()"><i class="fas fa-comments"></i> Feedbacks</a>
+      <a href="#" class="icon" onclick="addToInterested(event, this)"><i class="fas fa-heart heart-icon"></i> Interested</a>
+      <a href="learnmore.html" class="icon"><i class="fas fa-book"></i> Learn More</a>
+    </div>
+    <hr>
+    <div class="lights-container">
+      <div class="light red" data-tooltip="High Risk"></div>
+      <div class="light orange" data-tooltip="Medium Risk"></div>
+      <div class="light green" data-tooltip="Low Risk"></div>
+    </div>
+  </div>
+
+  <!-- Second Card -->
+  <div class="card">
+    <h2 class="title">Tokha Road Maintenance</h2>
+    <hr class="divider">
+    <div class="details">
+      <section class="project-status">
+        <h3>Project Status: Completed <i class="fas fa-check-circle completed-icon"></i></h3>
+        <p>Type: Road Construction</p>
+      </section>
+    </div>
+    <div class="footer">
+      <a href="#" class="icon"><i class="fas fa-file-alt"></i> Report</a>
+      <a href="#" class="icon" onclick="openFeedbackCard()"><i class="fas fa-comments"></i> Feedbacks</a>
+      <a href="#" class="icon" onclick="addToInterested(event, this)"><i class="fas fa-heart heart-icon"></i> Interested</a>
+      <a href="learnmore.html" class="icon"><i class="fas fa-book"></i> Learn More</a>
+    </div>
+    <hr>
+    <div class="lights-container">
+      <div class="light red" data-tooltip="High Risk"></div>
+      <div class="light orange" data-tooltip="Medium Risk"></div>
+      <div class="light green" data-tooltip="Low Risk"></div>
+    </div>
+  </div>
+  <!-- First Card -->
+  <div class="card">
+    <h2 class="title">Samakhusi Bridge Construction</h2>
+    <hr class="divider">
+    <div class="details">
+      <section class="project-status">
+        <h3>Project Status: On Process <i class="fas fa-hourglass-half on-process-icon"></i></h3>
+        <p>Type: Bridge Construction</p>
+      </section>
+    </div>
+    <div class="footer">
+      <a href="#" class="icon"><i class="fas fa-file-alt"></i> Report</a>
+      <a href="#" class="icon" onclick="openFeedbackCard()"><i class="fas fa-comments"></i> Feedbacks</a>
+      <a href="#" class="icon" onclick="addToInterested(event, this)"><i class="fas fa-heart heart-icon"></i> Interested</a>
+      <a href="learnmore.html" class="icon"><i class="fas fa-book"></i> Learn More</a>
+    </div>
+    <hr>
+    <div class="lights-container">
+      <div class="light red" data-tooltip="High Risk"></div>
+      <div class="light orange" data-tooltip="Medium Risk"></div>
+      <div class="light green" data-tooltip="Low Risk"></div>
+    </div>
+  </div>
+
+  <!-- Feedback Card -->
+  <div class="feedback-card hidden">
+    <div class="feedback-card-content">
+      <span class="close-btn" onclick="closeFeedbackCard()">&times;</span>
+      <h2>Feedback</h2>
+      <p>Please provide your feedback:</p>
+      <form class="feedback-form" onsubmit="submitFeedback(event)">
+        <textarea name="feedback" placeholder="Enter your feedback" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+      <div class="thank-you-message" style="display: none;">
+        <p>Thank you for your feedback!</p>
+      </div>
+    </div>
+  </div>
+  <script>
+   
+  // Wait for the DOM to be fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // JavaScript function to toggle active class on light circles
+    function toggleActive(element) {
+      // Remove active class from all lights
+      var lights = document.querySelectorAll('.light');
+      lights.forEach(function(light) {
+        light.classList.remove('active');
+      });
+
+      // Add active class to the clicked light
+      element.classList.add('active');
+    }
+
+    // Add event listeners to the light circles
+    var lights = document.querySelectorAll('.light');
+    lights.forEach(function(light) {
+      light.addEventListener('click', function() {
+        toggleActive(this);
+        
+      });
+    });
+  });
+</script>
+
+  </script>
+  
+</body>
+</html>

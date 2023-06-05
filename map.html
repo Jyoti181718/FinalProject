@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container {
+            position: relative;
+            display: inline-block;
+        }
+
+        #mapImage {
+            width: 100%;
+            height: auto;
+        }
+
+        #projectPopup {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 10px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="mapImage" src="odamap.jpg" alt="Oda Map">
+        <div id="projectPopup">Project details will appear here.</div>
+    </div>
+
+    <script>
+        const mapImage = document.getElementById('mapImage');
+        const projectPopup = document.getElementById('projectPopup');
+
+        mapImage.addEventListener('mousemove', showProjectDetails);
+        mapImage.addEventListener('mouseleave', hideProjectDetails);
+
+        function showProjectDetails(event) {
+            const mouseX = event.offsetX;
+            const mouseY = event.offsetY;
+
+            const projects = [
+                'Project A',
+                'Project B',
+                'Project C',
+                'Project D',
+                'Project E',
+                'Project F',
+                'Project G',
+                'Project H',
+                'Project I',
+                'Project J',
+                'Project K',
+                'Project L',
+                // Add more project names here...
+            ];
+
+            const randomProject = projects[Math.floor(Math.random() * projects.length)];
+
+            projectPopup.style.top = mouseY + 'px';
+            projectPopup.style.left = mouseX + 'px';
+            projectPopup.innerHTML = randomProject;
+            projectPopup.style.display = 'block';
+            projectPopup.style.opacity = '1';
+        }
+
+        function hideProjectDetails() {
+            projectPopup.style.display = 'none';
+            projectPopup.style.opacity = '0';
+        }
+    </script>
+</body>
+</html>
